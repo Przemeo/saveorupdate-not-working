@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.13.xsd">
+
+    <changeSet id="init_MainSequence" author="przemeo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="MAIN_SEQUENCE"/>
+            </not>
+        </preConditions>
+
+        <comment>Create sequence for ID generation</comment>
+
+        <createSequence sequenceName="MAIN_SEQUENCE" minValue="1" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="init_Parent_Table" author="przemeo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="PARENT"/>
+            </not>
+        </preConditions>
+
+        <comment>Create PARENT table</comment>
+
+        <createTable tableName="PARENT">
+            <column name="ID" type="VARCHAR2(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PARENT"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="UX_PARENT_NAME"/>
+            </column>
+            <column name="VERSION_COUNTER" type="BIGINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="init_Child_Table" author="przemeo">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CHILD"/>
+            </not>
+        </preConditions>
+
+        <comment>Create CHILD table</comment>
+
+        <createTable tableName="CHILD">
+            <column name="ID" type="VARCHAR2(40)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CHILD"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR2(40)">
+                <constraints nullable="false" referencedTableName="PARENT" referencedColumnNames="ID" foreignKeyName="FK_PARENT_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="UX_CHILD_NAME"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
