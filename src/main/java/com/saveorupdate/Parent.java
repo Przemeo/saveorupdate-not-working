@@ -1,10 +1,10 @@
 package com.saveorupdate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Version;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 public class Parent extends Id {
 
-    @Column(name = "NAME", updatable = false, nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @Version

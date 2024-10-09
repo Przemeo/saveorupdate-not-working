@@ -1,10 +1,10 @@
 package com.saveorupdate;
 
-import jakarta.persistence.Access;
-import jakarta.persistence.AccessType;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.MappedSuperclass;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +21,9 @@ public class Id {
 
     private static final String ID_GENERATOR_STRATEGY_NAME = "ID_GENERATOR";
 
-    @jakarta.persistence.Id
+    @javax.persistence.Id
     @GenericGenerator(name = ID_GENERATOR_STRATEGY_NAME,
-                      type = SequenceStringIdGenerator.class,
+                      strategy = "com.saveorupdate.SequenceStringIdGenerator",
                       parameters = {
                               @Parameter(name = SequenceStyleGenerator.SEQUENCE_PARAM, value = "MAIN_SEQUENCE"),
                               @Parameter(name = SequenceStyleGenerator.INCREMENT_PARAM, value = "50")

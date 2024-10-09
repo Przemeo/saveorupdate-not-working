@@ -1,7 +1,7 @@
 package com.saveorupdate;
 
 import io.quarkus.test.junit.QuarkusTest;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,6 +59,7 @@ class ParentRepositoryTest {
         assertEquals("1", parent.getOptionalId().get());
     }
 
+    //works as it should
     private void saveOrUpdateParentWithNewChild() {
         //simulate load from database
         Parent parent = new Parent();
@@ -66,7 +67,7 @@ class ParentRepositoryTest {
         parent.setName("parent");
         parent.setVersion(0L);
         Child child1 = new Child();
-        child1.setId("51");
+        child1.setId("2");
         child1.setName("child1");
         //new child
         Child child2 = new Child();
