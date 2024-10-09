@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 public class Parent extends Id {
 
-    @Column(name = "NAME", updatable = false, nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @Version

@@ -59,6 +59,7 @@ class ParentRepositoryTest {
         assertEquals("1", parent.getOptionalId().get());
     }
 
+    //does not work - child is not being inserted into db
     private void saveOrUpdateParentWithNewChild() {
         //simulate load from database
         Parent parent = new Parent();
